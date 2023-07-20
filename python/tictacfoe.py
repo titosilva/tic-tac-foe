@@ -10,7 +10,7 @@ def new_game() -> List[str]:
 def get_winner(game: List[str]) -> str:
     for row in game:
         if row[0] == ' ':
-            break
+            continue
 
         if row.count(row[0]) == len(row):
             return row[0]
@@ -19,7 +19,7 @@ def get_winner(game: List[str]) -> str:
         base = game[0][col]
 
         if base == ' ':
-            break
+            continue
 
         is_winner = True
         for row in game:
@@ -52,7 +52,7 @@ def make_move(game: List[str], x: int, y: int, player: str):
     if game[x][y] != ' ':
         raise ValueError()
     
-    if x > 2 or y > 2:
+    if x > 2 or y > 2 or x < 0 or y < 0:
         raise ValueError()
     
     game[x] = game[x][:y] + player + game[x][y + 1:]
